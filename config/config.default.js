@@ -15,8 +15,7 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1560758361733_5728';
 
-  config.default_page = 1;
-  config.default_limit = 20;
+  config.default_limit = 30;
 
 
   config.name = 'crider.club';

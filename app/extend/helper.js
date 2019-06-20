@@ -30,20 +30,20 @@ exports.verifyToken = async (ctx, userId) => {
 };
 
 // 处理成功响应
-exports.success = (ctx, result = null, message = '请求成功', status = 200) => {
+exports.success = (ctx, result = null, msg = '请求成功', status = 200) => {
   ctx.body = {
     code: 1,
-    message,
+    msg,
     data: result,
   };
   ctx.status = status;
 };
 
 // 处理失败响应
-exports.error = (ctx, code, message) => {
+exports.error = (ctx, code, msg) => {
   ctx.body = {
     code,
-    message,
+    msg,
   };
   ctx.status = code;
 };

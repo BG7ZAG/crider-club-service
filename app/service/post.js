@@ -17,6 +17,27 @@ class PostService extends Service {
     post.author_id = authorId;
     return post.save();
   }
+
+  /**
+   * 查询全部帖子
+   * @param {*} opt currentPage, limit
+   */
+  findAll(opt) {
+    return Promise.all([
+      this.ctx.model.Post.find().sort({ _id: -1 }).skip(opt.currentPage * opt.limit - opt.limit)
+        .limit(opt.limit)
+        .exec(),
+      this.ctx.model.Post.count().exec(),
+    ]);
+  }
+
+  /**
+   * 根据id查找帖子
+   * @param {Object} id id
+   */
+  findById(id) {
+    return this.ctx.model.Post.findOne({ _id: id }).exec();
+  }
 }
 
 module.exports = PostService;

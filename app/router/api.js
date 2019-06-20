@@ -16,8 +16,10 @@ module.exports = app => {
   // 注册
   apiV1Router.post('/signup', controller.sign.signup);
 
-  // 发帖
+  // 帖子相关
   apiV1Router.post('/post/add', userRequired, controller.post.add);
+  apiV1Router.get('/post/findAll', controller.post.findAll);
+  apiV1Router.get('/post/findById', controller.post.findById);
 
 
 };
