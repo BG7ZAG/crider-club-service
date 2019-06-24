@@ -8,6 +8,7 @@ class BaseController extends Controller {
     const captcha = await this.service.tools.captcha(); // 服务里面的方法
     // ctx.response.type = 'image/svg+xml'; // 知道你个返回的类型
     // ctx.body = captcha.data;
+    // console.log(ctx.session);
     ctx.body = {
       code: 1,
       msg: '获取成功',

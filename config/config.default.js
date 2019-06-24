@@ -44,18 +44,21 @@ module.exports = appInfo => {
     secret: 'xxxxxxxxxxxxx',
   };
 
-  config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
-  };
 
   config.security = {
     csrf: {
-      enable: false,
+      // useSession: true, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
+      // cookieName: 'csrfToken', // Cookie 中的字段名，默认为 csrfToken
+      // sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
+      // enable: false,
       ignoreJSON: true,
     },
-    domainWhiteList: [ 'http://localhost:8080' ],
+    domainWhiteList: [ 'localhost:3000', 'crider.club' ],
   };
+  // config.cors = {
+  //   origin: 'http://localhost:3000',
+  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  // };
 
   // 邮箱配置
   config.mail_opts = {

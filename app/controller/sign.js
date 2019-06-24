@@ -97,7 +97,7 @@ class SignController extends Controller {
     const rpassword = validator.trim(ctx.request.body.rpassword || '');
     const email = validator.trim(ctx.request.body.email || '');
     const code = validator.trim(ctx.request.body.code || '');
-    console.log('------------', this.ctx.session.code);
+    console.log('------------', ctx.session, code);
     let msg;
     // 验证信息的正确性
     if ([ username, password, rpassword, email, code ].some(item => {
@@ -106,6 +106,8 @@ class SignController extends Controller {
       msg = '信息不完整。';
     } else if (username.length < 5) {
       msg = '用户名至少需要5个字符。';
+    } else if (code !== ctx.session.code) {
+      msg = '验证码错误';
     } else if (!validator.isEmail(email)) {
       msg = '邮箱不合法。';
     } else if (password !== rpassword) {
@@ -114,7 +116,6 @@ class SignController extends Controller {
       msg = '密码不少于6个字符';
     }
     if (msg) {
-      ctx.status = 422;
       ctx.body = {
         code: 0,
         msg,

@@ -16,7 +16,7 @@ class ToolsService extends Service {
       bacground: '#ffffff',
     });
     this.ctx.session.code = captcha.text.toLowerCase();
-    console.log(captcha.text.toLowerCase());
+    console.log('验证码：', captcha.text.toLowerCase());
     return captcha;
   }
 }
