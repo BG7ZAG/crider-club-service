@@ -16,6 +16,9 @@ module.exports = app => {
   // 注册
   apiV1Router.post('/signup', controller.sign.signup);
 
+  // 邮箱验证
+  apiV1Router.get('/active_account', controller.mail.activeAccount);
+
   // 帖子相关
   apiV1Router.post('/post/add', userRequired, controller.post.add);
   apiV1Router.get('/post/findAll', controller.post.findAll);

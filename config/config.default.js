@@ -21,6 +21,7 @@ module.exports = appInfo => {
   config.name = 'crider.club';
   config.description = 'crider.club';
   config.host = 'https://crider.club';
+  config.api = 'http://criderapi.huangliangbo.com';
   config.session_secret = 'crider_club_secret'; // 务必修改
 
   // add your middleware config here
@@ -47,7 +48,7 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: {
-      // useSession: true, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
+      useSession: true, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
       // cookieName: 'csrfToken', // Cookie 中的字段名，默认为 csrfToken
       // sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
       // enable: false,
@@ -55,18 +56,19 @@ module.exports = appInfo => {
     },
     domainWhiteList: [ 'localhost:3000', 'crider.club' ],
   };
-  // config.cors = {
-  //   origin: 'http://localhost:3000',
-  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
-  // };
+  config.cors = {
+    credentials: true,
+    origin: 'http://localhost:3000',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
 
   // 邮箱配置
   config.mail_opts = {
     host: 'smtp.qiye.aliyun.com',
     port: 465,
     auth: {
-      user: 'admin@crider.club',
-      pass: 'club',
+      user: 'test@crider.club',
+      pass: 'crider123456.',
     },
     ignoreTLS: true,
   };

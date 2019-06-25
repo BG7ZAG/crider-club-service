@@ -134,7 +134,6 @@ class SignController extends Controller {
       ],
     }, {});
     if (users.length > 0) {
-      ctx.status = 422;
       ctx.body = {
         code: 0,
         msg: '用户名或邮箱已被使用',
@@ -152,11 +151,12 @@ class SignController extends Controller {
     // 发送激活邮件
     await service.mail.sendActiveMail(email, utils.md5(email + passMd5 + config.session_secret), username);
 
-    ctx.body = {
-      code: 1,
-      msg: '注册成功',
-      data: '欢迎加入 ' + config.name + '！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号。',
-    };
+    // 清空验证码
+    ctx.session.code = null;
+
+    const data = '欢迎加入 ' + config.name + '！我们已给您的注册邮箱发送了一封邮件，请点击里面的链接来激活您的帐号。';
+    const resMsg = '注册成功';
+    ctx.helper.success(ctx, data, resMsg);
   }
 }
 

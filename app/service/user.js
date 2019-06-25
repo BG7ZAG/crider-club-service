@@ -41,12 +41,14 @@ class UserService extends Service {
    */
   newAndSave(username, password, email, avatar_url, active) {
     const user = new this.ctx.model.User();
+    const token = this.ctx.helper.getAccessToken(this.ctx);
     user.username = username;
     user.password = password;
     user.email = email;
     user.avatar = avatar_url;
     user.active = active || false;
-    user.accessToken = uuid.v4();
+    // user.accessToken = uuid.v4();
+    user.accessToken = token;
 
     return user.save();
   }
